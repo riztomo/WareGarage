@@ -1,0 +1,89 @@
+CREATE TABLES
+
+create type employee_type as enum ('MANAGER', 'OWNER');
+
+create table employee (
+id bigserial primary key,
+username text unique not null,
+password text not null,
+name text not null,
+company_id bigint not null,
+role employee_type not null
+);
+
+create table company (
+id bigserial primary key,
+name text unique not null,
+);
+
+create table warehouse (
+id bigserial primary key,
+address text not null,
+name text not null,
+company_id bigint not null,
+manager_id bigint,
+rem_capacity bigint not null
+);
+
+create table inout_records (
+id bigserial primary key,
+company_id bigint not null,
+warehouse text not null,
+section text not null,
+commodity_id text not null,
+name text not null,
+type commodities not null,
+volume bigint not null,
+in_time date,
+out_time date
+);
+
+create type commodities as enum ('LIVE', 'FOOD', 'EARTH', 'ELECTRONIC', 'PHARMA', 'FURNITURE', 'TRANSPORT');
+
+create table section (
+id bigserial primary key,
+warehouse_id bigint not null,
+name text not null,
+commodity_type commodities not null,
+rem_capacity bigint not null
+);
+
+create table commodity (
+id bigserial primary key,
+commodity_id text unique,
+section_id bigint not null,
+volume bigint not null,
+name text not null
+);
+
+/*/login*/
+select * from employee where username='${temp.username}' and password='${hashedPassword}'
+
+
+/*/register*/
+select * from employee where username='${temp.username}'
+/* if matches */
+error
+/* else */
+insert into employee(username, password, name, company_id) values ('${username}', '${password}', '${name}', ${company_id})
+
+/*/company*/
+select * from company where id=${company_owner_id}
+/* if no company */
+insert into company(name, owner_id) values '${name}', ${owner_id}
+/* final */
+select * from warehouse where company_id=${company_id}
+
+
+/*/create-warehouse*/
+insert into warehouse(address, company_id, manager_id, rem_capacity) values '${address}', ${company_id}, ${capacity}
+
+/*/assign-warehouse*/
+update warehouse set manager_id = ${manager_id} where id = ${warehouse_id}
+
+/*/warehouse*/
+select * from section where warehouse_id = ${warehouse_id}
+
+/*/create-section*/
+insert into section(warehouse_id, name, commodity_type, rem_capacity) values (${warehouse_id}, ${name}, ${commodity_type}, ${rem_capacity})
+update warehouse set rem_capacity = rem_capacity - ${rem_capacity} where warehouse_id = ${warehouse_id}

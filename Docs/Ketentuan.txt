@@ -1,0 +1,16 @@
+Sebuah perusahaan dapat membuat beberapa tempat penyimpanan. 
+
+Tempat penyimpanan tersebut memiliki kapasitas tertentu dan dapat dibagi menjadi beberapa section yang tiap sectionnya menyimpan barang tertentu. 
+
+Jika barang tidak terlalu banyak dan masih ada ruang di dalam gudang, alokasi untuk sebuah jenis barang bisa ditambah dan dikurang. 
+
+Barang dapat disimpan dan ditarik di mana tiap barang memiliki ID yang menyesuaikan jenisnya dan tanggal masuk. 
+
+Tiap gudang memiliki sebuah akun pengurus dengan sebuah akun utama yang bisa membuat perusahaan dan mengakses semua gudang (OWNER dan MANAGER). 
+
+Tiap gudang juga memiliki data keluar masuk barang yang ditandai dengan tanggal masuk, tanggal keluar, dan kapasitas yang keluar, dan owner punya akses terhadap semua data keluar masuk.
+
+Data keluar masuk bisa dijadikan PDF
+
+    
+
