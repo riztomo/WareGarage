@@ -32,7 +32,7 @@ role employee_type not null
 
 *2. Company*
 
-Tabel Employee berisi database perusahaan yang bergabung.
+Tabel Company berisi database perusahaan yang bergabung.
 <pre>
 id bigserial primary key
 name text unique not null
